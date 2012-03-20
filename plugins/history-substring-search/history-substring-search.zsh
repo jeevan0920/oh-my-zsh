@@ -245,7 +245,7 @@ if [[ $+functions[_zsh_highlight] -eq 0 ]]; then
   }
 
   # Override ZLE widgets to make them invoke _zsh_highlight.
-  for event in ${${(f)"$(zle -la)"}:#(_*|orig-*|.run-help|.which-command)}; do
+  for event in ${${(f)"$(zle -la)"}:#(_*|orig-*|.run-help|.which-command|.beep)}; do
     if [[ "$widgets[$event]" == completion:* ]]; then
       eval "zle -C orig-$event ${${${widgets[$event]}#*:}/:/ } ; $event() { builtin zle orig-$event && _zsh_highlight } ; zle -N $event"
     else
